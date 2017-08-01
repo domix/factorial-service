@@ -1,0 +1,68 @@
+buildscript {
+  ext {
+    springBootVersion = '1.5.6.RELEASE'
+  }
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath 'com.bmuschko:gradle-docker-plugin:3.0.11'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.bmuschko.docker-remote-api'
+
+version = '0.0.2'
+sourceCompatibility = 1.8
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+jar {
+  baseName = 'service'
+  version = ''
+}
+
+docker {
+  registryCredentials {
+    username = project.property('dockerRegistryUsername')
+    password = project.property('dockerRegistryPassword')
+  }
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compileOnly('org.projectlombok:lombok')
+  compile 'org.apache.commons:commons-math3:3.6.1'
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task createDockerfile(type: com.bmuschko.gradle.docker.tasks.image.Dockerfile) {
+  destFile = project.file('build/libs/Dockerfile')
+  from 'openjdk:8u141-jre'
+  maintainer 'Domingo Suarez Torres "domingo.suarez@gmail.com"'
+  copyFile 'service.jar', '/opt/service.jar'
+  exposePort 8080
+  entryPoint 'java', "-Djava.awt.headless=true", "-Xms128m", "-Xmx128m", '-jar', '/opt/service.jar'
+}
+
+task buildImage(type: com.bmuschko.gradle.docker.tasks.image.DockerBuildImage) {
+  dependsOn createDockerfile
+  inputDir = createDockerfile.destFile.parentFile
+  tag = 'domix/factorial-service:' + project.version.toLowerCase()
+}
+
+task pushImage(type: com.bmuschko.gradle.docker.tasks.image.DockerPushImage) {
+  dependsOn buildImage
+  imageName = buildImage.tag
+}
+
+createDockerfile.dependsOn bootRepackage

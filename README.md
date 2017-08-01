@@ -21,7 +21,7 @@ You can change the tag in the `build.gradle` if you want to deploy to a Registry
 
 ### Docker Registry credential
 
-You can set your own credential by adding them in the following file `~/.gradle/gradle.properties`
+You can set your own credentials by adding them in the following file `~/.gradle/gradle.properties`
 
 ```
 dockerRegistryUsername=your_user

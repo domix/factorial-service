@@ -1,6 +1,6 @@
 # factorial-service
 
-Very simple `"microservice"`, it can be deployed as Docker container
+Very simple `"microservice"`, it can be deployed as Docker container. It includes Kubernetes configuration sample files.
 
 
 ## Run

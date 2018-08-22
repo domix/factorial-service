@@ -23,7 +23,7 @@ public class FactorialController {
     return FactorialResult.builder()
       .of(of)
       .result(factorial)
-      .version("0.0.2")
+      .version("0.0.4")
       .build();
   }
 }

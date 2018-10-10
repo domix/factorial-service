@@ -55,7 +55,7 @@ metadata:
 spec:
   maxReplicas: 8
   minReplicas: 1
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 75
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment

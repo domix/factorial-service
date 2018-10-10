@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: factorial
+  name: factorial-mn
 spec:
   replicas: 1
   strategy:
@@ -11,23 +11,20 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      name: factorial
+      name: factorial-mn
   template:
     metadata:
       labels:
-        name: factorial
+        name: factorial-mn
     spec:
       containers:
         - image: domix/factorial-service:0.0.5
           name: factorial
           imagePullPolicy: Always
           resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
             limits:
-              memory: "1024Mi"
-              cpu: "500m"
+              memory: "256Mi"
+              cpu: "300m"
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -35,28 +32,30 @@ spec:
             httpGet:
               path: /factorial/
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 15
             periodSeconds: 10
-            timeoutSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 2
           readinessProbe:
             httpGet:
               path: /factorial/
               port: 8080
-            failureThreshold: 5
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             periodSeconds: 10
-            timeoutSeconds: 20
+            timeoutSeconds: 1
             successThreshold: 1
+            failureThreshold: 2
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: factorial
+  name: factorial-mn
 spec:
   maxReplicas: 8
   minReplicas: 1
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 75
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
-    name: factorial
+    name: factorial-mn

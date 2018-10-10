@@ -5,7 +5,7 @@ Very simple `"microservice"`, it can be deployed as Docker container. It include
 
 ## Run
 
-`./gradlew bootRun`
+`./gradlew run`
 
 
 ## Create Docker Image

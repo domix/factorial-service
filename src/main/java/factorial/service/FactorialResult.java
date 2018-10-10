@@ -1,4 +1,4 @@
-package com.domingosuarez.talks.kubernetes.jvmmx.factorialservice.web;
+package factorial.service;
 
 import lombok.Builder;
 import lombok.Getter;

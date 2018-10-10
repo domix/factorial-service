@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: factorial.service
+---
+testFramework: junit
+sourceLanguage: java

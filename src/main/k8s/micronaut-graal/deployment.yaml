@@ -21,6 +21,8 @@ spec:
         - image: domix/factorial-service:0.0.5-graalvm
           name: factorial
           imagePullPolicy: Always
+          command: ["/factorial"]
+          args: ["-Xmx256m"]
           resources:
             limits:
               memory: "256Mi"
@@ -33,19 +35,19 @@ spec:
               path: /factorial/
               port: 8080
             initialDelaySeconds: 1
-            periodSeconds: 5
+            periodSeconds: 2
             timeoutSeconds: 1
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 3
           readinessProbe:
             httpGet:
               path: /factorial/
               port: 8080
-            initialDelaySeconds: 1
-            periodSeconds: 5
+            initialDelaySeconds: 10
+            periodSeconds: 2
             timeoutSeconds: 1
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 5
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler

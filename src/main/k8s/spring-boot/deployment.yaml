@@ -22,12 +22,9 @@ spec:
           name: factorial
           imagePullPolicy: Always
           resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "320Mi"
+              cpu: "200m"
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -35,18 +32,20 @@ spec:
             httpGet:
               path: /factorial/
               port: 8080
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 10
-            timeoutSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
           readinessProbe:
             httpGet:
               path: /factorial/
               port: 8080
-            failureThreshold: 5
             initialDelaySeconds: 10
             periodSeconds: 10
-            timeoutSeconds: 20
+            timeoutSeconds: 5
             successThreshold: 1
+            failureThreshold: 5
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler

@@ -62,7 +62,7 @@ dependencies {
 task createDockerfile(type: com.bmuschko.gradle.docker.tasks.image.Dockerfile) {
   destFile = project.file('build/libs/Dockerfile')
   //from 'openjdk:8u181-jre-slim-stretch'
-  from 'openjdk:8u171-jre-alpine3.8'
+  from 'openjdk:8u181-jre-alpine3.8'
   maintainer 'Domingo Suarez Torres "domingo.suarez@gmail.com"'
 
   copyFile "${ project.name }-${ project.version.toLowerCase() }-all.jar", '/opt/service.jar'

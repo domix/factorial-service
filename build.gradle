@@ -35,27 +35,27 @@ docker {
 
 dependencyManagement {
   imports {
-    mavenBom 'io.micronaut:bom:1.0.0.RC2'
+    mavenBom 'io.micronaut:micronaut-bom:1.0.2'
   }
 }
 
 dependencies {
   compileOnly "org.projectlombok:lombok:${ lombokVersion }"
   annotationProcessor "org.projectlombok:lombok:${ lombokVersion }"
-  annotationProcessor "io.micronaut:inject-java"
-  annotationProcessor "io.micronaut:validation"
-  compile "io.micronaut:http-client"
-  compile "io.micronaut:http-server-netty"
-  compile "io.micronaut:inject"
-  compile "io.micronaut:validation"
-  compile "io.micronaut:runtime"
+  annotationProcessor "io.micronaut:micronaut-inject-java"
+  annotationProcessor "io.micronaut:micronaut-validation"
+  compile "io.micronaut:micronaut-http-client"
+  compile "io.micronaut:micronaut-http-server-netty"
+  compile "io.micronaut:micronaut-inject"
+  compile "io.micronaut:micronaut-validation"
+  compile "io.micronaut:micronaut-runtime"
   compile 'org.apache.commons:commons-math3:3.6.1'
   compileOnly "com.oracle.substratevm:svm:GraalVM-1.0.0-rc7"
-  compileOnly "io.micronaut:inject-java"
+  compileOnly "io.micronaut:micronaut-inject-java"
   runtime "ch.qos.logback:logback-classic:1.2.3"
-  runtime "io.micronaut:graal"
+  runtime "io.micronaut:micronaut-graal"
   testCompile "junit:junit:4.12"
-  testCompile "io.micronaut:inject-java"
+  testCompile "io.micronaut:micronaut-inject-java"
   testCompile "org.hamcrest:hamcrest-all:1.3"
 }
 

@@ -1,9 +1,9 @@
-FROM domix/graalvm:1.0.0-rc7 as builder
+FROM domix/graalvm:1.0.0-rc8 as builder
 
 ADD ./build/ /build
 RUN   cd /build && \
     native-image --no-server \
-                 --class-path libs/factorial-service-0.0.5-all.jar \
+                 --class-path libs/factorial-service-0.0.6-all.jar \
            -H:ReflectionConfigurationFiles=reflect.json \
            -H:EnableURLProtocols=http \
            -H:IncludeResources="logback.xml|application.yml|META-INF/services/*.*" \

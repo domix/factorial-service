@@ -1,7 +1,7 @@
 ./gradlew assemble
-java -cp build/libs/factorial-service-0.0.5-all.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer 
+java -cp build/libs/factorial-service-0.0.6-all.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer 
 native-image --no-server \
-             --class-path build/libs/factorial-service-0.0.5-all.jar \
+             --class-path build/libs/factorial-service-0.0.6-all.jar \
 			 -H:ReflectionConfigurationFiles=build/reflect.json \
 			 -H:EnableURLProtocols=http \
 			 -H:IncludeResources="logback.xml|application.yml|META-INF/services/*.*" \

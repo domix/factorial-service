@@ -15,7 +15,7 @@ ext {
   lombokVersion = '1.18.2'
 }
 
-version = '0.0.5'
+version = '0.0.6'
 sourceCompatibility = 1.8
 group "factorial.service"
 
@@ -50,7 +50,7 @@ dependencies {
   compile "io.micronaut:micronaut-validation"
   compile "io.micronaut:micronaut-runtime"
   compile 'org.apache.commons:commons-math3:3.6.1'
-  compileOnly "com.oracle.substratevm:svm:GraalVM-1.0.0-rc7"
+  compileOnly "com.oracle.substratevm:svm:GraalVM-1.0.0-rc8"
   compileOnly "io.micronaut:micronaut-inject-java"
   runtime "ch.qos.logback:logback-classic:1.2.3"
   runtime "io.micronaut:micronaut-graal"

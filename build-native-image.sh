@@ -1,4 +1,4 @@
-./gradlew assemble
+./gradlew clean assemble
 java -cp build/libs/factorial-service-0.0.6-all.jar io.micronaut.graal.reflect.GraalClassLoadingAnalyzer 
 native-image --no-server \
              --class-path build/libs/factorial-service-0.0.6-all.jar \
